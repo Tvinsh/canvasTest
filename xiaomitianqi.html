@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>天气</title>
+		<style type="text/css">
+			body{
+				padding: 0;
+				margin: 0 auto;
+			}
+		</style>
+	</head>
+	<body>
+		<canvas id="canvas" width="500" height="500"></canvas>
+		<script type="text/javascript">
+			var oCanvas=document.getElementById('canvas');
+			var context=oCanvas.getContext('2d')
+				var x=0;
+				var m=0;
+			var play=setInterval(function () {
+				x++
+				m++
+				if(m>500){
+					m=-400
+				}
+	//			渐变背景
+				context.save();
+				var grd=context.createLinearGradient(0,500,0,0);
+				grd.addColorStop(0,'#2d2dff');
+				grd.addColorStop(0.4,'#8b8bff')
+				grd.addColorStop(1,'#ddd');
+				context.fillStyle='#8eb1f3';
+				context.fillRect(0,0,500,500)
+				context.restore()
+			//云
+				context.beginPath();
+				context.fillStyle='#afcaf5';
+				context.arc(70+m,310,50,0,2*Math.PI,true);
+				context.arc(130+m,260,60,0,2*Math.PI,true);
+				context.arc(130+m,280,60,0,2*Math.PI,true);
+				context.arc(140+m,310,60,0,2*Math.PI,true);
+				context.arc(10+m,330,30,0,2*Math.PI,true);
+				context.arc(180+m,360,100,0,2*Math.PI,true);
+				//console.log(70+m)
+				context.fill();
+				context.closePath();
+	// 			//小云
+				context.beginPath();
+				context.arc(280, 130, 25, 0, Math.PI * 2, true);
+				context.arc(240, 135, 25, 0, Math.PI * 2, true);
+				context.arc(220, 135, 25, 0, Math.PI * 2, true);
+				var grd1 = context.createLinearGradient(280, 90, 280, 130);
+				grd1.addColorStop(0, "#acc8f7");
+				grd1.addColorStop(1, "#8eb1f3");
+				context.fillStyle = grd1;
+				context.fill();
+				context.closePath();
+				
+				context.beginPath();
+				context.arc(15, 80, 25, 0, Math.PI * 2, true);
+				context.arc(50, 90, 25, 0, Math.PI * 2, true);
+				var grd1 = context.createLinearGradient(15, 55, 15, 80);
+				grd1.addColorStop(0, "#acc8f7");
+				grd1.addColorStop(1, "#8eb1f3");
+				context.fillStyle = grd1;
+				context.fill();
+				context.closePath();
+
+				context.beginPath();
+				context.arc(470, 135, 30, 0, Math.PI * 2, true);
+				var grd1 = context.createLinearGradient(530, 100, 530, 140);
+				grd1.addColorStop(0, "#acc8f7");
+				grd1.addColorStop(1, "#8eb1f3");
+				context.fillStyle = grd1;
+				context.fill();
+				context.closePath();
+
+			//			小山丘1
+				context.beginPath();
+				context.moveTo(0,330);
+				context.strokeStyle='#96b7ec';
+				context.fillStyle='#96b7ec';
+				context.bezierCurveTo(350,350,350,450,500,500)
+				context.lineTo(0,500);
+				context.lineTo(0,350);
+				context.fill();
+				context.stroke();
+				context.closePath();
+				//			大山丘2
+				context.beginPath();
+				context.moveTo(0,400);
+				context.strokeStyle='#7da1df';
+				context.fillStyle='#7da1df';
+				context.bezierCurveTo(200,400,300,250,500,350)
+				context.lineTo(500,500);
+				context.lineTo(0,500);
+				context.lineTo(0,400);
+				context.fill();
+				context.stroke();
+				context.closePath();
+				//风车1
+	//			柱子
+				context.beginPath();
+				context.moveTo(350,320)
+				context.strokeStyle='#7496d6';
+				context.fillStyle='#7496d6';
+				context.lineTo(352,240);
+				context.lineTo(354,240);
+				context.lineTo(356,320);
+				context.fill();
+				context.stroke();
+				context.closePath();
+	//			翅
+				context.save();
+				context.translate(353,240);	
+				context.rotate(Math.PI/40*x);
+				for(var i = 0; i <3; i++) {
+					context.beginPath();
+					context.fillStyle = "#80a5eb";
+					context.moveTo(-5, -0);
+					context.lineTo(-2, 50);
+					context.lineTo(2, 50);
+					context.lineTo(5, 0);
+					context.rotate(2*Math.PI/3);
+					context.fill();
+					context.closePath();
+				}
+	 			context.restore();
+				//圆
+				context.beginPath();
+				context.fillStyle = "#fff";
+				context.arc(353,240,5,0,2*Math.PI,true);
+				context.fill();
+				context.closePath();
+				
+	//			风车2
+	//			柱子
+				context.beginPath();
+				context.moveTo(450,330)
+				context.strokeStyle='#7496d6';
+				context.fillStyle='#7496d6';
+				context.lineTo(452,270);
+				context.lineTo(454,270);
+				context.lineTo(456,330);
+				context.fill();
+				context.stroke();
+				context.closePath();
+	//			翅
+				context.save();
+				context.translate(453,270);	
+				context.rotate(Math.PI/30 * x);
+				for(var i = 0; i <3; i++) {
+				context.beginPath();
+				context.fillStyle = "#80a5eb";
+				context.moveTo(-4, -0);
+				context.lineTo(-1, 40);
+				context.lineTo(1, 40);
+				context.lineTo(4, 0);
+				context.rotate(2*Math.PI/3);
+				context.fill();
+				context.closePath();
+				}
+				context.restore();
+				//圆
+				context.beginPath();
+				context.fillStyle = "#fff";
+				context.arc(453,270,3,0,2*Math.PI,true);
+				context.fill();
+				context.closePath();
+	//				风车3
+	//			柱子
+				context.beginPath();
+				context.moveTo(50,335)
+				context.fillStyle='#7496d6';
+				context.lineTo(52,270);
+				context.lineTo(54,270);
+				context.lineTo(55,335);
+				context.fill();
+				context.closePath();
+	//			翅
+				context.save();
+				context.translate(53,270);	
+				context.rotate(2*Math.PI/40 * x);
+				for(var i = 0; i <3; i++) {
+				context.beginPath();
+				context.fillStyle = "#80a5eb";
+				context.moveTo(-4, -0);
+				context.lineTo(-1, 40);
+				context.lineTo(1, 40);
+				context.lineTo(4, 0);
+				context.rotate(2*Math.PI/3);
+				context.fill();
+				context.closePath();
+				}
+				context.restore();
+				//圆
+				context.beginPath();
+				context.fillStyle = "#fff";
+				context.arc(53,270,3,0,2*Math.PI,true);
+				context.fill();
+				context.closePath();
+				
+	//			风车4
+	//			柱子
+				context.beginPath();
+				context.moveTo(150,350)
+				context.strokeStyle='#7496d6';
+				context.fillStyle='#7496d6';
+				context.lineTo(152,290);
+				context.lineTo(154,290);
+				context.lineTo(156,350);
+				context.fill();
+				context.stroke();
+				context.closePath();
+	//			翅
+				context.save();
+				context.translate(153,290);	
+				context.rotate(Math.PI/30 * x);
+				for(var i = 0; i <3; i++) {
+				context.beginPath();
+				context.fillStyle = "#80a5eb";
+				context.moveTo(-4, -0);
+				context.lineTo(-1, 30);
+				context.lineTo(1, 30);
+				context.lineTo(4, 0);
+				context.rotate(2*Math.PI/3);
+				context.fill();
+				context.closePath();
+				}
+				context.restore();
+				//圆
+				context.beginPath();
+				context.fillStyle = "#fff";
+				context.arc(153,290,3,0,2*Math.PI,true);
+				context.fill();
+				context.closePath();
+			},20)
+		</script>
+	</body>
+</html>
