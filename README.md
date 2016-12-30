@@ -1,3 +1,1 @@
-# python
-my python
-print ‘hello world’
+canvas test
